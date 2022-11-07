@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Pokédex</title>
+  </head>
+  <body>
+    <h1>Pokedéx</h1>
+    <form onsubmit="buscarPokemon()">
+      <label for="poke">Pesquise o Pokémon agora mesmo!</label>
+      <div class="div_input">
+        <input type="text" id="poke" />
+        <button type="submit">Buscar</button>
+      </div>
+      <span class="error" id="error"></span>
+    </form>
+    <div class="pokedex" id="pokedex">
+      <div class="flex_top">
+        <div class="image_container">
+          <img src="" alt="pokemon" id="image" />
+        </div>
+        <div>
+          <h2 id="name"></h2>
+          <div>
+            <p>Altura: <span id="height"></span></p>
+            <p>Peso: <span id="weight"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function buscarPokemon() {
+      event.preventDefault();
+      const pokemon = document.getElementById("poke").value;
+      if (pokemon === "") {
+        return null;
+      } else {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+          .then((response) => {
+            // valida se a requisição falhou
+            if (!response.ok) {
+              document.getElementById("error").innerHTML =
+                "Pokémon não encontrado 😭";
+              return new Error("falhou a requisição"); // cairá no catch da promise
+            }
+
+            // verificando pelo status
+            if (response.status === 404) {
+              document.getElementById("error").innerHTML =
+                "Pokémon não encontrado 😭";
+              return new Error("não encontrou qualquer resultado");
+            }
+            document.getElementById("pokedex").style.display = "block";
+            // retorna uma promise com os dados em JSON
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            document.getElementById("image").src = data.sprites.front_default;
+            document.getElementById("name").innerHTML = data.name;
+            document.getElementById("height").innerHTML = data.height;
+            document.getElementById("weight").innerHTML = data.weight;
+          });
+      }
+    }
+  </script>
+</html>
+x

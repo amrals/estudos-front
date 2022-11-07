@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 5px;
+}
+svg {
+    width: 25px;
+    margin-right: -10px;
+}
+h1 {
+    margin: 3vh 0vw;
+}
+label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 2vh;
+}
+.div_input {
+    margin: 2vh;
+}
+input {
+    padding: 1vh 1vw;
+    border: 2px solid #000;
+    font-weight: 500;
+    font-size: 1rem;
+}
+button {
+    background: #fff;
+    color: red;
+    border: 2px solid red;
+    padding: 1vh 2vw;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .25s;
+    font-size: 1rem;
+}
+button:hover {
+    background: red;
+    color: #fff;
+}
+.pokedex {
+    background-color: #E3350D;
+    max-width: 500px;
+    margin: auto;
+    margin-top: 5vh;
+    padding: 4vh 2vw;
+    display: none;
+}
+.flex_top {
+    display: flex;
+    gap: 2rem;
+}
+.flex_top > div {
+    text-align: center;
+    width: 50%;
+    text-transform: capitalize;
+    color: #fff;
+}
+.flex_top > div > div{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 2vh;
+}
+.flex_top > div > div > p {
+    width: fit-content;
+    margin: 1vh 0vw;
+}
+.image_container {
+    background-color: #fff;
+    width: 200px;
+    /* margin: auto; */
+}
+#image {
+    width: 200px;
+}
+.error {
+    color: #E3350D;
+    font-weight: 500;
+    font-size: 1rem;
+}
